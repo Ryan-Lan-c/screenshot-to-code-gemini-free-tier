@@ -59,8 +59,9 @@ function getSelectedElementTag(commit: Commit | null): string | null {
 
 function isSlowGeminiModel(model?: string): boolean {
   return (
-    model === CodeGenerationModel.GEMINI_3_1_PRO_PREVIEW_HIGH ||
-    model === CodeGenerationModel.GEMINI_3_1_PRO_PREVIEW_MEDIUM
+    // model === CodeGenerationModel.GEMINI_3_1_PRO_PREVIEW_HIGH ||
+    // model === CodeGenerationModel.GEMINI_3_1_PRO_PREVIEW_MEDIUM
+    model === CodeGenerationModel.GEMINI_2_5_PRO
   );
 }
 
@@ -190,14 +191,14 @@ function Sidebar({
     head &&
     commits[head] &&
     commits[head].variants[commits[head].selectedVariantIndex].status ===
-      "complete";
+    "complete";
 
   // Check if the currently selected variant has an error
   const isSelectedVariantError =
     head &&
     commits[head] &&
     commits[head].variants[commits[head].selectedVariantIndex].status ===
-      "error";
+    "error";
 
   // Get the error message from the selected variant
   const selectedVariantErrorMessage =
@@ -290,7 +291,7 @@ function Sidebar({
                 ref={promptTextRef}
                 className={`text-[13px] text-violet-950 dark:text-violet-100 break-words whitespace-pre-wrap ${
                   !isPromptExpanded ? "line-clamp-[10]" : ""
-                }`}
+                  }`}
               >
                 {latestChangeSummary}
               </p>
@@ -313,37 +314,37 @@ function Sidebar({
                 </div>
               )}
             </div>
-              {latestChangeImages.length > 0 && (
-                <div className="mt-2 flex gap-2 flex-wrap justify-end">
-                  {latestChangeImages.map((image, index) => (
-                    <button
-                      key={`${image.slice(0, 40)}-${index}`}
-                      onClick={() => setLightboxImage(image)}
-                      className="shrink-0 cursor-zoom-in rounded-lg border border-gray-200 bg-white p-1 dark:border-zinc-700 dark:bg-zinc-900 hover:border-violet-300 dark:hover:border-violet-500 transition-colors"
-                    >
-                      <img
-                        src={image}
-                        alt={`Reference ${index + 1}`}
-                        className="h-24 w-24 object-contain"
-                        loading="lazy"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
-              {latestChangeVideos.length > 0 && (
-                <div className="mt-2 space-y-2">
-                  {latestChangeVideos.map((video, index) => (
-                    <video
-                      key={`${video.slice(0, 40)}-${index}`}
-                      src={video}
-                      className="w-full rounded-lg border border-gray-200 dark:border-zinc-700"
-                      controls
-                      preload="metadata"
+            {latestChangeImages.length > 0 && (
+              <div className="mt-2 flex gap-2 flex-wrap justify-end">
+                {latestChangeImages.map((image, index) => (
+                  <button
+                    key={`${image.slice(0, 40)}-${index}`}
+                    onClick={() => setLightboxImage(image)}
+                    className="shrink-0 cursor-zoom-in rounded-lg border border-gray-200 bg-white p-1 dark:border-zinc-700 dark:bg-zinc-900 hover:border-violet-300 dark:hover:border-violet-500 transition-colors"
+                  >
+                    <img
+                      src={image}
+                      alt={`Reference ${index + 1}`}
+                      className="h-24 w-24 object-contain"
+                      loading="lazy"
                     />
-                  ))}
-                </div>
-              )}
+                  </button>
+                ))}
+              </div>
+            )}
+            {latestChangeVideos.length > 0 && (
+              <div className="mt-2 space-y-2">
+                {latestChangeVideos.map((video, index) => (
+                  <video
+                    key={`${video.slice(0, 40)}-${index}`}
+                    src={video}
+                    className="w-full rounded-lg border border-gray-200 dark:border-zinc-700"
+                    controls
+                    preload="metadata"
+                  />
+                ))}
+              </div>
+            )}
           </div>
         )}
 
@@ -367,10 +368,10 @@ function Sidebar({
           !isSelectedVariantComplete &&
           !isSelectedVariantError &&
           isSlowGeminiModel(selectedVariant?.model) && (
-          <div className="mb-3 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900 dark:border-amber-800 dark:bg-amber-900/20 dark:text-amber-200">
-            Slow, high quality model. May take 5-10 mins on some images/videos.
-          </div>
-        )}
+            <div className="mb-3 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900 dark:border-amber-800 dark:bg-amber-900/20 dark:text-amber-200">
+              Slow, high quality model. May take 5-10 mins on some images/videos.
+            </div>
+          )}
 
         {isViewingOlderVersion && currentVersionNumber !== null ? (
           <div className="mb-4 flex flex-col items-center py-6">
@@ -411,16 +412,16 @@ function Sidebar({
           (appState === AppState.CODE_READY ||
             isSelectedVariantComplete ||
             isSelectedVariantError) && (
-          <div className="flex justify-end mb-3">
-            <button
-              onClick={regenerate}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
-            >
-              <LuRefreshCw className="w-3.5 h-3.5" />
-              Retry
-            </button>
-          </div>
-        )}
+            <div className="flex justify-end mb-3">
+              <button
+                onClick={regenerate}
+                className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-600 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              >
+                <LuRefreshCw className="w-3.5 h-3.5" />
+                Retry
+              </button>
+            </div>
+          )}
 
         {/* Show cancel button when coding */}
         {appState === AppState.CODING && !isSelectedVariantComplete && (
@@ -558,9 +559,9 @@ function Sidebar({
                       onClick={toggleInSelectAndEditMode}
                       className={`rounded-lg p-2 transition-colors ${
                         inSelectAndEditMode
-                          ? "bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400"
-                          : "text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:text-zinc-500 dark:hover:bg-zinc-800 dark:hover:text-zinc-300"
-                      }`}
+                        ? "bg-violet-100 text-violet-600 dark:bg-violet-900/30 dark:text-violet-400"
+                        : "text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:text-zinc-500 dark:hover:bg-zinc-800 dark:hover:text-zinc-300"
+                        }`}
                       title={inSelectAndEditMode ? "Exit selection mode" : "Select an element in the preview to target your edit"}
                     >
                       <LuMousePointerClick className="w-[18px] h-[18px]" />
@@ -572,9 +573,9 @@ function Sidebar({
                   disabled={!updateInstruction.trim()}
                   className={`rounded-xl p-2 transition-colors update-btn ${
                     updateInstruction.trim()
-                      ? "bg-violet-600 text-white hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-400"
-                      : "cursor-not-allowed bg-gray-200 text-gray-400 dark:bg-zinc-700 dark:text-zinc-500"
-                  }`}
+                    ? "bg-violet-600 text-white hover:bg-violet-700 dark:bg-violet-500 dark:hover:bg-violet-400"
+                    : "cursor-not-allowed bg-gray-200 text-gray-400 dark:bg-zinc-700 dark:text-zinc-500"
+                    }`}
                   title="Send"
                 >
                   <LuArrowUp className="w-[18px] h-[18px]" strokeWidth={2.5} />

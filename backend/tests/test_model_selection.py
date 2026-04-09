@@ -24,10 +24,13 @@ class TestModelSelectionAllKeys:
         )
 
         expected = [
-            Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
+            # Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
+            Llm.GEMINI_2_5_FLASH,
+            Llm.GEMINI_2_5_FLASH_LITE,
             Llm.GPT_5_2_CODEX_HIGH,
             Llm.CLAUDE_OPUS_4_6,
-            Llm.GEMINI_3_1_PRO_PREVIEW_LOW,
+            # Llm.GEMINI_3_1_PRO_PREVIEW_LOW,
+            Llm.GEMINI_2_5_PRO,
         ]
         assert models == expected
 
@@ -43,7 +46,9 @@ class TestModelSelectionAllKeys:
         )
 
         expected = [
-            Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
+            # Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
+            Llm.GEMINI_2_5_FLASH,
+            Llm.GEMINI_2_5_FLASH_LITE,
             Llm.GPT_5_4_2026_03_05_LOW,
         ]
         assert models == expected
@@ -60,7 +65,9 @@ class TestModelSelectionAllKeys:
         )
 
         expected = [
-            Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
+            # Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
+            Llm.GEMINI_2_5_FLASH,
+            Llm.GEMINI_2_5_FLASH_LITE,
             Llm.GPT_5_4_2026_03_05_LOW,
         ]
         assert models == expected
@@ -77,8 +84,11 @@ class TestModelSelectionAllKeys:
         )
 
         expected = [
-            Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
-            Llm.GEMINI_3_1_PRO_PREVIEW_HIGH,
+            # Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
+            # Llm.GEMINI_3_1_PRO_PREVIEW_HIGH,
+            Llm.GEMINI_2_5_FLASH,
+            Llm.GEMINI_2_5_FLASH_LITE,
+            Llm.GEMINI_2_5_PRO,
         ]
         assert models == expected
 
@@ -94,8 +104,11 @@ class TestModelSelectionAllKeys:
         )
 
         expected = [
-            Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
-            Llm.GEMINI_3_1_PRO_PREVIEW_HIGH,
+            # Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL,
+            # Llm.GEMINI_3_1_PRO_PREVIEW_HIGH,
+            Llm.GEMINI_2_5_FLASH,
+            Llm.GEMINI_2_5_FLASH_LITE,
+            Llm.GEMINI_2_5_PRO,
         ]
         assert models == expected
 

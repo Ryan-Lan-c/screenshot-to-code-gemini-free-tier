@@ -38,14 +38,20 @@ def serialize_gemini_tools(tools: List[CanonicalToolDefinition]) -> List[types.T
 
 
 def _get_gemini_api_model_name(model: Llm) -> str:
-    if model in [Llm.GEMINI_3_FLASH_PREVIEW_HIGH, Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL]:
-        return "gemini-3-flash-preview"
-    if model in [
-        Llm.GEMINI_3_1_PRO_PREVIEW_HIGH,
-        Llm.GEMINI_3_1_PRO_PREVIEW_MEDIUM,
-        Llm.GEMINI_3_1_PRO_PREVIEW_LOW,
-    ]:
-        return "gemini-3.1-pro-preview"
+    # if model in [Llm.GEMINI_3_FLASH_PREVIEW_HIGH, Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL]:
+    #     return "gemini-3-flash-preview"
+    # if model in [
+    #     Llm.GEMINI_3_1_PRO_PREVIEW_HIGH,
+    #     Llm.GEMINI_3_1_PRO_PREVIEW_MEDIUM,
+    #     Llm.GEMINI_3_1_PRO_PREVIEW_LOW,
+    # ]:
+    #     return "gemini-3.1-pro-preview"
+    if model in [Llm.GEMINI_2_5_FLASH]:
+        return "gemini-2.5-flash"
+    if model in [Llm.GEMINI_2_5_PRO]:
+        return "gemini-2.5-pro"
+    if model in [Llm.GEMINI_2_5_FLASH_LITE]:
+        return "gemini-2.5-flash-lite"
     return model.value
 
 
@@ -62,6 +68,17 @@ def _get_thinking_level_for_model(model: Llm) -> str:
     if model == Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL:
         return "minimal"
     return "high"
+
+def _get_thinking_config_for_model(model: Llm) -> types.ThinkingConfig | None:
+    # gemini-2.5-flash-lite does not support thinking
+    if model == Llm.GEMINI_2_5_FLASH_LITE:
+        return None
+    # gemini-2.5-pro and gemini-2.5-flash use thinking_budget (not thinking_level)
+    if model == Llm.GEMINI_2_5_PRO:
+        return types.ThinkingConfig(thinking_budget=16000, include_thoughts=True)
+    if model == Llm.GEMINI_2_5_FLASH:
+        return types.ThinkingConfig(thinking_budget=8000, include_thoughts=True)
+    return None
 
 
 def _extract_text_from_content(content: str | List[Dict[str, Any]]) -> str:
@@ -276,15 +293,16 @@ class GeminiProviderSession(ProviderSession):
         ]
 
     async def stream_turn(self, on_event: EventSink) -> ProviderTurn:
-        thinking_level = _get_thinking_level_for_model(self._model)
+        # thinking_level = _get_thinking_level_for_model(self._model)
         config = types.GenerateContentConfig(
             temperature=1.0,
             max_output_tokens=50000,
             system_instruction=self._system_prompt,
-            thinking_config=types.ThinkingConfig(
-                thinking_level=cast(Any, thinking_level),
-                include_thoughts=True,
-            ),
+            # thinking_config=types.ThinkingConfig(
+            #     thinking_level=cast(Any, thinking_level),
+            #     include_thoughts=True,
+            # ),
+            thinking_config=_get_thinking_config_for_model(self._model),
             tools=self._tools,
         )
 

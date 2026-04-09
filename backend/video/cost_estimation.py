@@ -50,18 +50,36 @@ GEMINI_PRICING = {
         "input_per_million": 2.00,
         "output_per_million": 12.00,
     },
+    "gemini-2.5-pro": {
+        "input_per_million": 2.00,
+        "output_per_million": 12.00,
+    },
+    "gemini-2.5-flash": {
+        "input_per_million": 0.50,
+        "output_per_million": 3.00,
+    },
+    "gemini-2.5-flash-lite": {
+        "input_per_million": 0.50,
+        "output_per_million": 3.00,
+    },
 }
 
 
 def get_model_api_name(model: Llm) -> str:
-    if model in [Llm.GEMINI_3_FLASH_PREVIEW_HIGH, Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL]:
-        return "gemini-3-flash-preview"
-    elif model in [
-        Llm.GEMINI_3_1_PRO_PREVIEW_HIGH,
-        Llm.GEMINI_3_1_PRO_PREVIEW_MEDIUM,
-        Llm.GEMINI_3_1_PRO_PREVIEW_LOW,
-    ]:
-        return "gemini-3.1-pro-preview"
+    # if model in [Llm.GEMINI_3_FLASH_PREVIEW_HIGH, Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL]:
+    #     return "gemini-3-flash-preview"
+    # elif model in [
+    #     Llm.GEMINI_3_1_PRO_PREVIEW_HIGH,
+    #     Llm.GEMINI_3_1_PRO_PREVIEW_MEDIUM,
+    #     Llm.GEMINI_3_1_PRO_PREVIEW_LOW,
+    # ]:
+    #     return "gemini-3.1-pro-preview"
+    if model == Llm.GEMINI_2_5_PRO:
+        return "gemini-2.5-pro"
+    elif model == Llm.GEMINI_2_5_FLASH:
+        return "gemini-2.5-flash"
+    elif model == Llm.GEMINI_2_5_FLASH_LITE:
+        return "gemini-2.5-flash-lite"
     return model.value
 
 

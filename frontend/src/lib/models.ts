@@ -13,11 +13,14 @@ export enum CodeGenerationModel {
   GPT_5_3_CODEX_MEDIUM = "gpt-5.3-codex (medium thinking)",
   GPT_5_3_CODEX_HIGH = "gpt-5.3-codex (high thinking)",
   GPT_5_3_CODEX_XHIGH = "gpt-5.3-codex (xhigh thinking)",
-  GEMINI_3_FLASH_PREVIEW_HIGH = "gemini-3-flash-preview (high thinking)",
-  GEMINI_3_FLASH_PREVIEW_MINIMAL = "gemini-3-flash-preview (minimal thinking)",
-  GEMINI_3_1_PRO_PREVIEW_HIGH = "gemini-3.1-pro-preview (high thinking)",
-  GEMINI_3_1_PRO_PREVIEW_MEDIUM = "gemini-3.1-pro-preview (medium thinking)",
-  GEMINI_3_1_PRO_PREVIEW_LOW = "gemini-3.1-pro-preview (low thinking)",
+  // GEMINI_3_FLASH_PREVIEW_HIGH = "gemini-3-flash-preview (high thinking)",
+  // GEMINI_3_FLASH_PREVIEW_MINIMAL = "gemini-3-flash-preview (minimal thinking)",
+  // GEMINI_3_1_PRO_PREVIEW_HIGH = "gemini-3.1-pro-preview (high thinking)",
+  // GEMINI_3_1_PRO_PREVIEW_MEDIUM = "gemini-3.1-pro-preview (medium thinking)",
+  // GEMINI_3_1_PRO_PREVIEW_LOW = "gemini-3.1-pro-preview (low thinking)",
+  GEMINI_2_5_FLASH = "gemini-2.5-flash",
+  GEMINI_2_5_FLASH_LITE = "gemini-2.5-flash-lite",
+  GEMINI_2_5_PRO = "gemini-2.5-pro",
 }
 
 // Will generate a static error if a model in the enum above is not in the descriptions
@@ -60,24 +63,27 @@ export const CODE_GENERATION_MODEL_DESCRIPTIONS: {
   "claude-opus-4-6": { name: "Claude Opus 4.6", inBeta: false },
   "claude-sonnet-4-6": { name: "Claude Sonnet 4.6", inBeta: false },
   "claude-sonnet-4-5-20250929": { name: "Claude Sonnet 4.5", inBeta: false },
-  "gemini-3-flash-preview (high thinking)": {
-    name: "Gemini 3 Flash (high)",
-    inBeta: true,
-  },
-  "gemini-3-flash-preview (minimal thinking)": {
-    name: "Gemini 3 Flash (minimal)",
-    inBeta: true,
-  },
-  "gemini-3.1-pro-preview (high thinking)": {
-    name: "Gemini 3.1 Pro (high)",
-    inBeta: true,
-  },
-  "gemini-3.1-pro-preview (medium thinking)": {
-    name: "Gemini 3.1 Pro (medium)",
-    inBeta: true,
-  },
-  "gemini-3.1-pro-preview (low thinking)": {
-    name: "Gemini 3.1 Pro (low)",
-    inBeta: true,
-  },
+  // "gemini-3-flash-preview (high thinking)": {
+  //   name: "Gemini 3 Flash (high)",
+  //   inBeta: true,
+  // },
+  // "gemini-3-flash-preview (minimal thinking)": {
+  //   name: "Gemini 3 Flash (minimal)",
+  //   inBeta: true,
+  // },
+  // "gemini-3.1-pro-preview (high thinking)": {
+  //   name: "Gemini 3.1 Pro (high)",
+  //   inBeta: true,
+  // },
+  // "gemini-3.1-pro-preview (medium thinking)": {
+  //   name: "Gemini 3.1 Pro (medium)",
+  //   inBeta: true,
+  // },
+  // "gemini-3.1-pro-preview (low thinking)": {
+  //   name: "Gemini 3.1 Pro (low)",
+  //   inBeta: true,
+  // },
+  "gemini-2.5-flash": { name: "Gemini 2.5 Flash", inBeta: false },
+  "gemini-2.5-flash-lite": { name: "Gemini 2.5 Flash Lite", inBeta: false },
+  "gemini-2.5-pro": { name: "Gemini 2.5 Pro", inBeta: false },
 };

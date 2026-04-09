@@ -25,11 +25,14 @@ class Llm(Enum):
     CLAUDE_4_5_OPUS_2025_11_01 = "claude-opus-4-5-20251101"
     CLAUDE_OPUS_4_6 = "claude-opus-4-6"
     # Gemini
-    GEMINI_3_FLASH_PREVIEW_HIGH = "gemini-3-flash-preview (high thinking)"
-    GEMINI_3_FLASH_PREVIEW_MINIMAL = "gemini-3-flash-preview (minimal thinking)"
-    GEMINI_3_1_PRO_PREVIEW_HIGH = "gemini-3.1-pro-preview (high thinking)"
-    GEMINI_3_1_PRO_PREVIEW_MEDIUM = "gemini-3.1-pro-preview (medium thinking)"
-    GEMINI_3_1_PRO_PREVIEW_LOW = "gemini-3.1-pro-preview (low thinking)"
+    # GEMINI_3_FLASH_PREVIEW_HIGH = "gemini-3-flash-preview (high thinking)"
+    # GEMINI_3_FLASH_PREVIEW_MINIMAL = "gemini-3-flash-preview (minimal thinking)"
+    # GEMINI_3_1_PRO_PREVIEW_HIGH = "gemini-3.1-pro-preview (high thinking)"
+    # GEMINI_3_1_PRO_PREVIEW_MEDIUM = "gemini-3.1-pro-preview (medium thinking)"
+    # GEMINI_3_1_PRO_PREVIEW_LOW = "gemini-3.1-pro-preview (low thinking)"
+    GEMINI_2_5_FLASH = "gemini-2.5-flash"
+    GEMINI_2_5_FLASH_LITE = "gemini-2.5-flash-lite"
+    GEMINI_2_5_PRO = "gemini-2.5-pro"
 
 
 class Completion(TypedDict):
@@ -62,11 +65,14 @@ MODEL_PROVIDER: dict[Llm, str] = {
     Llm.CLAUDE_4_5_OPUS_2025_11_01: "anthropic",
     Llm.CLAUDE_OPUS_4_6: "anthropic",
     # Gemini models
-    Llm.GEMINI_3_FLASH_PREVIEW_HIGH: "gemini",
-    Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL: "gemini",
-    Llm.GEMINI_3_1_PRO_PREVIEW_HIGH: "gemini",
-    Llm.GEMINI_3_1_PRO_PREVIEW_MEDIUM: "gemini",
-    Llm.GEMINI_3_1_PRO_PREVIEW_LOW: "gemini",
+    # Llm.GEMINI_3_FLASH_PREVIEW_HIGH: "gemini",
+    # Llm.GEMINI_3_FLASH_PREVIEW_MINIMAL: "gemini",
+    # Llm.GEMINI_3_1_PRO_PREVIEW_HIGH: "gemini",
+    # Llm.GEMINI_3_1_PRO_PREVIEW_MEDIUM: "gemini",
+    # Llm.GEMINI_3_1_PRO_PREVIEW_LOW: "gemini",
+    Llm.GEMINI_2_5_FLASH: "gemini",
+    Llm.GEMINI_2_5_FLASH_LITE: "gemini",
+    Llm.GEMINI_2_5_PRO: "gemini",
 }
 
 # Convenience sets for membership checks
